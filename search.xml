@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>aTrust零信任</title>
+      <link href="/2026/03/01/%E9%9B%B6%E4%BF%A1%E4%BB%BB/"/>
+      <url>/2026/03/01/%E9%9B%B6%E4%BF%A1%E4%BB%BB/</url>
+      
+        <content type="html"><![CDATA[<h1 id="aTrust零信任"><a href="#aTrust零信任" class="headerlink" title="aTrust零信任"></a>aTrust零信任</h1>]]></content>
+      
+      
+      <categories>
+          
+          <category> 安全产品 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 安全产品 </tag>
+            
+            <tag> 零信任 </tag>
+            
+            <tag> 深信服 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>MPLS详解</title>
       <link href="/2026/02/28/MPLS%E8%AF%A6%E8%A7%A3/"/>
       <url>/2026/02/28/MPLS%E8%AF%A6%E8%A7%A3/</url>
@@ -37,6 +66,12 @@
       
         <content type="html"><![CDATA[<h2 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h2><h3 id="SQL注入原理"><a href="#SQL注入原理" class="headerlink" title="SQL注入原理"></a>SQL注入原理</h3><p>SQL注入是指Web应用程序对用户输入数据的合法性未进行判断、处理 。前端传入的参数是攻击者可控的，并且参数被正常带入到数据库中执行，攻击者可以通过构造不同的 SQL语句来对数据库进行操作，正常情况下，攻击者可以对数据库进行高危操作（例如，数据查询、WebShell写入、命令执行等操作）。</p><h3 id="危害"><a href="#危害" class="headerlink" title="危害"></a>危害</h3><ul><li>数据库泄露</li><li>网页篡改</li><li>获取系统权限</li><li>万能密码</li><li>敏感文件读取</li></ul><h3 id="产生条件"><a href="#产生条件" class="headerlink" title="产生条件"></a>产生条件</h3><ul><li>用户对输入参数可控</li><li>参数可以被带入带数据库中执行</li></ul><p><strong>如何寻找SQL注入漏洞：</strong></p><p>测试网站中所有可能与数据库进行交互（增删改查）的点</p><h3 id="注入流程"><a href="#注入流程" class="headerlink" title="注入流程"></a>注入流程</h3><blockquote><p>判断是否存在注入，注入是字符型还是数字型</p><p>猜解SQL查询语句中的字段数</p><p>确定显示的字段回显位置</p><p>获取当前数据库</p><p>获取数据库中的表</p><p>获取表中的字段名</p><p>查询到账户的数据</p></blockquote><h3 id="常见注入手法"><a href="#常见注入手法" class="headerlink" title="常见注入手法"></a>常见注入手法</h3><ul><li>联合注入</li><li>报错注入</li><li>布尔盲注</li><li>时间盲注</li><li>宽字节注入</li><li>堆叠注入</li><li>二次注入</li><li>Cookie注入</li><li>DNSlog外带注入</li></ul><h3 id="常用工具"><a href="#常用工具" class="headerlink" title="常用工具"></a>常用工具</h3><blockquote><p> SQLmap、BurpSuite</p></blockquote><h3 id="防御方式"><a href="#防御方式" class="headerlink" title="防御方式"></a>防御方式</h3><blockquote><p>下载相关防注入文件，通过incloud包含在网站配置文件里</p><p>使用函数过滤</p><p>使用白名单过滤</p><p>使用WAF拦截</p><p>采用PDO预处理</p></blockquote><h2 id="CSRF-跨站请求伪造"><a href="#CSRF-跨站请求伪造" class="headerlink" title="CSRF(跨站请求伪造)"></a>CSRF(跨站请求伪造)</h2><h3 id="CSRF原理"><a href="#CSRF原理" class="headerlink" title="CSRF原理"></a>CSRF原理</h3><p>攻击者通过技术手段欺骗用户浏览器访问一个自己曾经认证过的网站并执行一些操作（如发邮件，发消息，甚至财产操作如转账和购买商品）。由于浏览器曾经认证过，所以被访问的网站会认为是真正的用户操作而去执行。</p><h3 id="漏洞利用方式"><a href="#漏洞利用方式" class="headerlink" title="漏洞利用方式"></a>漏洞利用方式</h3><p><img src="./image.png" alt="null"></p><ol><li>用户打开浏览器，登录信任网站A，输入账号密码请求登录网站A。（登陆操作）</li><li>用户信息通过验证后，网站A产生Cookie信息返回给用户浏览器。 （返回cookie）</li><li>用户在未退出网站A之前，在 同一浏览器 又打开了一个网站B。 （新建TAB页，打开了新的网站）</li><li>网站B 接收到用户的访问请求后，网站B将包含向网站A请求的恶意的代码返回给浏览器，用户浏览器渲染执行，触发恶意请求。</li><li>该条请求发送后，可信网站会以存储在浏览器中用户的Cookie处理该请求，导致用户执行恶意操作。（网站A根据请求中的Cookie信息进行处理，那么最终执行恶意操作就是用户）</li></ol><p><strong>注：用户登录受信任网站A，并在本地生成Cookie。且在不登出A的情况下，访问危险网站B。</strong></p><h3 id="CSRF分类"><a href="#CSRF分类" class="headerlink" title="CSRF分类"></a>CSRF分类</h3><h4 id="GET型"><a href="#GET型" class="headerlink" title="GET型"></a>GET型</h4><p>即网站某个功能点是通过GET传参，由于其参数直接暴露在URL中，攻击者可以更容易地发现该漏洞并构造恶意链接</p><ul><li><strong>示例</strong>：<ul><li>假设目标网站的用户密码修改接口是<code>http://example.com/change_password?new_password=123456</code>。</li><li>攻击者可以构造一个恶意链接<code>&lt;a href=&quot;http://example.com/change_password?new_password=123456&quot;&gt;点击这里&lt;/a&gt;</code>，用户点击后会修改密码。</li></ul></li></ul><h4 id="POST型"><a href="#POST型" class="headerlink" title="POST型"></a>POST型</h4><p>虽然POST请求相对安全，但如果缺少CSRF令牌验证等防护措施，攻击者仍可以通过构造恶意表单等方式发起伪造请求。</p><ul><li><p><strong>示例</strong>：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;http://example.com/change_password&quot;</span> <span class="attr">method</span>=<span class="string">&quot;POST&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;new_password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;123456&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">document</span>.<span class="property">forms</span>[<span class="number">0</span>].<span class="title function_">submit</span>();</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><ul><li>当用户访问包含该代码的页面时，表单会自动提交，修改用户密码为<code>123456</code>。</li></ul></li></ul><h3 id="CSRF漏洞危害"><a href="#CSRF漏洞危害" class="headerlink" title="CSRF漏洞危害"></a>CSRF漏洞危害</h3><ul><li>数据篡改</li><li>恶意操作</li><li>配合XSS漏洞攻击</li><li>CSRF蠕虫</li></ul><h3 id="如何寻找CSRF漏洞"><a href="#如何寻找CSRF漏洞" class="headerlink" title="如何寻找CSRF漏洞"></a>如何寻找CSRF漏洞</h3><p>一般在用户密码修改、信息修改、添加账号、发布文章等一些敏感操作位置，如果没有 二次校验 （图像验证码、短信验证码、原密码）就可以进行测试。（原密码校验、图形校验、短信校验等）</p><p>当使用BP工具抓包后，数据包中如果没有Referer和token字段，大概率存在CSRF漏洞</p><h3 id="常用工具-1"><a href="#常用工具-1" class="headerlink" title="常用工具"></a>常用工具</h3><blockquote><p>CSRFTester 、 CSRF RequestBuilder 、 BurpSutie </p></blockquote><h3 id="CSRF防御"><a href="#CSRF防御" class="headerlink" title="CSRF防御"></a>CSRF防御</h3><blockquote><p>验证Referer来源</p><p>增加token验证</p><p>增加二次校验</p><p>增加验证码机制</p><p>使用同步器令牌模式</p><p>使用双重提交 cookie</p><p>使用 HTTP 标准标头来验证请求的来源</p><p>基于 UI 的验证，例如基于 CAPTCHA 的授权和 MFA</p><p>CSRF 令牌的使用</p></blockquote><h2 id="XSS-跨站脚本攻击"><a href="#XSS-跨站脚本攻击" class="headerlink" title="XSS(跨站脚本攻击)"></a>XSS(跨站脚本攻击)</h2><h3 id="XSS漏洞原理"><a href="#XSS漏洞原理" class="headerlink" title="XSS漏洞原理"></a>XSS漏洞原理</h3><p>形成XSS漏洞主要原因是：因为Web应用程序对 <code>用户输入的内容</code> 和 <code>程序输出的内容</code> 没有经过严格的校验和过滤，导致攻击者构造恶意的代码带入后，又被当作正常的代码输出至前端页面，浏览器当作有效代码解析执行从而产生危害。</p><h3 id="危害-1"><a href="#危害-1" class="headerlink" title="危害"></a>危害</h3><blockquote><p>窃取用户 Cookie 信息</p><p>网络钓鱼，包括获取各类用户浏览器账号</p><p>劫持用户浏览器，从而执行任意操作</p><p>网页挂马</p><p>配合其他漏洞使用，如（CSRF）实施进一步危害</p><p>传播跨站脚本蠕虫</p><p>强制弹出广告</p></blockquote><h3 id="漏洞分类"><a href="#漏洞分类" class="headerlink" title="漏洞分类"></a>漏洞分类</h3><blockquote><p>反射型、存储型、DOM型</p></blockquote><h4 id="反射型"><a href="#反射型" class="headerlink" title="反射型"></a>反射型</h4><p>介绍：一般是网站只是简单地将用户输入的数据直接或未经过完善的安全过滤就在浏览器中进行输岀，导致输岀的数据中存在可被浏览器执行的代码数据，反射性XSS的恶意代码在前端的参数中，需诱导受害者主动访问恶意链接，从而触发XSS攻击。</p><p>特点：一次性攻击，交互触发</p><p>攻击点：如搜索栏、填写表单等</p><p>攻击过程：</p><blockquote><p>构造恶意代码的链接</p><p>设法发送给受害者。</p><p>受害者打开页面，向服务器发送请求。 </p><p>服务器解析地址，然后返回源代码。 </p><p>浏览器接收，解析代码触发XSS漏洞攻击。 </p></blockquote><p>图示：</p><p><img src="./image-1757935341600.png" alt="img"></p><h4 id="存储型"><a href="#存储型" class="headerlink" title="存储型"></a>存储型</h4><p>介绍：一般是由于Web应用程序对用户输入数据的不严格，导致Web应用程序将黑客输入的恶意跨站攻击数据信息保存在服务端的数据库或其他文件形式中。如通过留言板、发布文章等地方插入数据时没有经过严格过滤，那么恶意代码将会被存储到数据库中，当用户访问该页面、文章、留言内容时触发代码加载执行。</p><p>特点：隐蔽性高，可以多次执行，永久性存在</p><p>攻击点：留言板、评论区、发布文章点……所有可能添加数据到数据库中的地方</p><p>攻击过程：</p><blockquote><p>用户通过相关功能点，将恶意的XSS代码，存储到服务器中 </p><p>当用户浏览到包含恶意XSS代码得页面时。（向服务端发送请求获取源代码信息） </p><p>服务器解析请求，将包含有恶意XSS代码的源代码发送给浏览器 </p><p>浏览器接收，解析代码触发XSS漏洞攻击 </p></blockquote><p>图示：</p><p><img src="./image-1757935624219.png" alt="img"></p><h4 id="DOM型"><a href="#DOM型" class="headerlink" title="DOM型"></a>DOM型</h4><p>DOM树：</p><p><img src="./htmltree.gif" alt="DOM HTML tree"></p><p>介绍：基于DOM文档对象的一种漏洞，并且DOM型XSS是基于JS上的，并不需要与服务器进行交互。其通过修改页面DOM节点数据信息而形成的ⅩSS跨站脚本攻击。不同于反射型XSS和存储型XSS，基于DOM的XSS跨站脚本攻击往往需要针对具体的 Javascript DOM代码进行分析，并根据实际情况进行XSS跨站脚本攻击的利用。<br>特点：不与服务器做交互，达到绕过WAF、躲避服务端的检测效果。</p><p>攻击点：通过js脚本对对文档对象进行编辑，从而修改页面的元素。</p><p>攻击过程：</p><blockquote><p>攻击者给用户发送带有恶意字符串的链接<br>用户点击该链接<br>服务器返回HTML文档，但是该文档此时不包含那个恶意字符串<br>客户端执行了该HTML文档里的脚本，然后把恶意脚本植入了页面<br>客户端执行了植入的恶意脚本，XSS攻击就发生了</p></blockquote><h3 id="常用测试标签"><a href="#常用测试标签" class="headerlink" title="常用测试标签"></a>常用测试标签</h3><blockquote><p><code>&lt;h1&gt;</code></p><p><code>&lt;script&gt;</code></p><p><code>&lt;a&gt;</code></p><p><code>&lt;svg&gt;</code></p><p><code>&lt;input&gt;</code></p><p><code>&lt;link&gt;</code></p></blockquote><h3 id="常用事件"><a href="#常用事件" class="headerlink" title="常用事件"></a>常用事件</h3><blockquote><p>onClick() (表单中点击触发) </p><p>onMouseMove() (攻击者需要让用户将光标移到一个图片或表格) </p><p>onError() (在加载文档或图像时发生错误) </p></blockquote>]]></content>
       
+      
+      <categories>
+          
+          <category> web渗透 </category>
+          
+      </categories>
       
       
         <tags>
