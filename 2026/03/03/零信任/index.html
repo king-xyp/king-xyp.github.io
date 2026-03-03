@@ -1,0 +1,379 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>aTrust零信任 | 沐风的blog</title><meta name="author" content="沐风"><meta name="copyright" content="沐风"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="深信服零信任产品概述">
+<meta property="og:type" content="article">
+<meta property="og:title" content="aTrust零信任">
+<meta property="og:url" content="http://king-xyp.github.io/2026/03/03/%E9%9B%B6%E4%BF%A1%E4%BB%BB/index.html">
+<meta property="og:site_name" content="沐风的blog">
+<meta property="og:description" content="深信服零信任产品概述">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://king-xyp.github.io/img/touxiang.png">
+<meta property="article:published_time" content="2026-03-03T06:34:29.000Z">
+<meta property="article:modified_time" content="2026-03-03T06:51:16.055Z">
+<meta property="article:author" content="沐风">
+<meta property="article:tag" content="安全产品">
+<meta property="article:tag" content="深信服">
+<meta property="article:tag" content="aTrust">
+<meta property="article:tag" content="零信任">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://king-xyp.github.io/img/touxiang.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "aTrust零信任",
+  "url": "http://king-xyp.github.io/2026/03/03/%E9%9B%B6%E4%BF%A1%E4%BB%BB/",
+  "image": "http://king-xyp.github.io/img/touxiang.png",
+  "datePublished": "2026-03-03T06:34:29.000Z",
+  "dateModified": "2026-03-03T06:51:16.055Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "沐风",
+      "url": "http://king-xyp.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://king-xyp.github.io/2026/03/03/%E9%9B%B6%E4%BF%A1%E4%BB%BB/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":"ture","top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'aTrust零信任',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/img/background.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/touxiang.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/artitalk"><i class="fa-fw fas fa-lightbulb"></i><span> 说说</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><!-- 左侧博客信息区域--><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">沐风的blog</span></a><a class="nav-page-title" href="/"><span class="site-name">aTrust零信任</span></a></span><!-- 新增的导航菜单容器（居中布局关键）--><div id="nav-menus-container"><!-- 菜单主体部分--><div id="menus"><!-- 菜单项--><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/artitalk"><i class="fa-fw fas fa-lightbulb"></i><span> 说说</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><!-- 右侧功能区域（新增容器）--><div id="nav-right-container"><!-- 搜索按钮（移动到右侧）--><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><!-- 移动端汉堡菜单按钮--><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">aTrust零信任</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-03T06:34:29.000Z" title="发表于 2026-03-03 14:34:29">2026-03-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-03T06:51:16.055Z" title="更新于 2026-03-03 14:51:16">2026-03-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%89%E5%85%A8%E4%BA%A7%E5%93%81/">安全产品</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%89%E5%85%A8%E4%BA%A7%E5%93%81/%E9%9B%B6%E4%BF%A1%E4%BB%BB/">零信任</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="aTrust零信任"><a href="#aTrust零信任" class="headerlink" title="aTrust零信任"></a>aTrust零信任</h1><p>零信任是一种安全理念，其核心思想是“从零开始信任”，即在网络安全中不默认信任任何用户、设备或应用。零信任的实施通常依赖于严格的身份验证和授权机制，以确保只有经过验证的用户和设备才能访问特定资源。</p>
+<p> <strong>零信任的定义</strong></p>
+<ol>
+<li><strong>理念基础</strong>：零信任的本质是以白名单的思路进行建设，强调在任何情况下都不应默认信任任何人或设备。</li>
+<li><strong>技术架构</strong>：零信任可以通过不同的技术架构实现，例如SDP（软件定义边界）和微隔离技术。SDP主要解决终端到业务的安全问题，而微隔离则用于服务器间的安全。</li>
+</ol>
+<p><strong>零信任的作用</strong></p>
+<ol>
+<li><strong>动态权限控制</strong>：通过身份验证和动态权限控制，零信任能够根据用户的行为和环境动态调整访问权限，从而减少潜在的安全风险。</li>
+<li><strong>增强安全性</strong>：零信任架构能够有效防止内部和外部的安全威胁，确保只有经过授权的用户才能访问敏感数据和应用。</li>
+<li><strong>适应多种场景</strong>：零信任理念可以应用于多种场景，包括企业内部网络、云环境以及远程办公等，提供灵活的安全解决方案。</li>
+<li><strong>全面的安全防护</strong>：通过与其他安全组件的联动，零信任能够实现全方位的安全防护体系，提升整体的安全性。</li>
+</ol>
+<h3 id="零信任对威胁的应对方法"><a href="#零信任对威胁的应对方法" class="headerlink" title="零信任对威胁的应对方法"></a>零信任对威胁的应对方法</h3><h4 id="针对外部威胁"><a href="#针对外部威胁" class="headerlink" title="针对外部威胁"></a>针对外部威胁</h4><p>多源信任评估：</p>
+<ul>
+<li>身份可信：通过多因素身份认证</li>
+<li>环境可信：对终端环境进行病毒、木马4、漏洞检测，防止已失陷终端访问业务</li>
+<li>行为可信：持续分析用户行为，及时发现潜伏威胁、攻击行为、病毒、木马</li>
+<li>访问控制（授权&#x2F;阻断）：根据信任评估结果，授权或阻断访问</li>
+</ul>
+<h4 id="针对内部威胁"><a href="#针对内部威胁" class="headerlink" title="针对内部威胁"></a>针对内部威胁</h4><p>采用NAC（802.1x准入）+FW（传统防火墙）：</p>
+<p>通过NAC实现身份化，将身份转换为IP，再由FW基于源IP段做粗粒度ACL访问控制</p>
+<p>实现零信任：</p>
+<p>零信任是基于身份的访问控制，去除对IP的依赖，做更精细化的访问控制，缩小信息暴露面</p>
+<p>去除对IP的依赖后，同时适用于内网访问和移动办公</p>
+<h3 id="零信任四大场景"><a href="#零信任四大场景" class="headerlink" title="零信任四大场景"></a>零信任四大场景</h3><blockquote>
+<ul>
+<li>移动场景</li>
+<li>内控</li>
+<li>多云安全访问</li>
+<li>统一访问控制</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>移动场景</p>
+<ul>
+<li><p>环境检测与准入</p>
+</li>
+<li><p>低危协议，体验优先;</p>
+<ol>
+<li>对于访问B&#x2F;S类Web应用，不建议做终端环境检测，优先考虑免客户端使用纯浏览器进行访问，获得最佳用户体验，免去终端运维成本；因为B&#x2F;S应用几乎不存在终端感染到服务器的情况（除WebShell等主动攻击行为以外）。</li>
+<li>对于Web服务器漏洞及WebShell使用IPS、WAF等产品进行常规防护。</li>
+</ol>
+</li>
+<li><p>中高危协议，安全优先：</p>
+<ol>
+<li>对于所有C&#x2F;S应用，均建议开启终端环境检测，以防止中毒终端通过RDP、SSH、Redis、Sqlserver、IPC$等协议向内部服务器感染。</li>
+<li>对RDP协议、SSH协议等高危协议，建议再加一层堡垒机防护（或使用RDP、SSH代理）。</li>
+</ol>
+</li>
+<li><p>准入控制，用于推送安全基线，如:</p>
+<p>1.要求终端必需打齐操作补丁才允许访问C&#x2F;S应用:</p>
+<p>2.要求终端必需安装杀毒软件;</p>
+<p>3.要求终端杀毒软件病毒库未过期,</p>
+</li>
+<li><p>轻量级防病毒</p>
+</li>
+</ul>
+</li>
+<li><p>内控：数据访问安全</p>
+<ul>
+<li>流量身份化</li>
+<li>资产发现<ul>
+<li>上线前资产梳理</li>
+<li>上线后，持续发现新建业务</li>
+<li>持续监控，发现违规&#x2F;风险资产</li>
+</ul>
+</li>
+<li>构建权限基线</li>
+<li>构建安全基线</li>
+<li>安全可视</li>
+</ul>
+</li>
+<li><p>业务上云</p>
+<ul>
+<li>由控制器做统一的认证、鉴权</li>
+<li>认证鉴权通过后，同时可以连接多个数据中心</li>
+</ul>
+</li>
+<li><p>统一访问控制</p>
+<ul>
+<li><strong>零信任理念</strong>：零信任的本质是从零开始建立信任，采用白名单的方式进行安全建设。它强调在任何情况下都不应默认信任任何用户、设备或应用，所有的访问都需要经过严格的认证和授权。</li>
+<li><strong>动态权限控制</strong>：aTrust通过身份重塑边界，利用动态权限控制和权限基线工具，实现智能权限管理。访问规则是动态的，会根据用户的访问行为、环境及业务系统的特性进行调整，从而有效防止对业务服务器的威胁。</li>
+<li><strong>身份为中心</strong>：aTrust支持自适应身份认证，能够在用户使用弱密码、在异常时间段或异地登录时进行增强认证。这种方式在授信终端和内网环境中可以免去辅助认证，提供更好的用户体验。</li>
+<li><strong>系统架构</strong>：深信服的零信任访问控制系统由控制中心、安全代理网关和客户端组成。控制中心负责建立和下发访问规则，安全代理网关根据这些规则对用户流量进行代理转发，客户端则负责终端安全风险的上报和网络数据的引流。</li>
+<li><strong>安全防护</strong>：aTrust提供开放API接口，可以与其他安全组件联动，通过对安全组件上报的信息进行统一处理，形成全方位的安全防护体系。</li>
+</ul>
+</li>
+</ul>
+<h3 id="aTrust与SSL-VPN的区别"><a href="#aTrust与SSL-VPN的区别" class="headerlink" title="aTrust与SSL VPN的区别"></a>aTrust与SSL VPN的区别</h3><ul>
+<li>SSL VPN 典型安全痛点：<ul>
+<li>_<strong>端口之痛</strong>_：VPN产品无一例外，都需要开放网络端口进行监听，这无疑是门户洞开，攻击者可以全天候的对VPN进行密码爆破、注入攻击尝试等，并往往最终得逞。</li>
+<li>_<strong>认证之痛</strong>_：VPN产品采用静态认证方式，安全性弱。缺乏终端认证、自适应多因子认证等能力；VPN一次认证始终访问的工作模式无法在用户访问过程中持续验证用户身份和终端是否可信。</li>
+<li>_<strong>权限之痛</strong>_：VPN产品提供网络隧道接入能力，用户拨通VPN后，事实上就和内网在网络层面打通了，用户终端上的恶意软件，意图不轨的用户都可以肆无忌惮的对内网资源进行访问和窃取。</li>
+<li>_<strong>漏洞之痛</strong>_：VPN产品漏洞层出不穷，攻击者利用VPN漏洞极易绕过VPN用户验证，直接进入VPN后台将VPN作为渗透内网的跳板，进行肆意横向移动。</li>
+<li>_<strong>架构之痛</strong>_：VPN产品作为远程接入的专用产品，大多属于单体架构，自成一体，和其他安全能力，比如终端安全能力、权限管理系统、威胁检测系统等难以打通；事实上，VPN在安全运营范畴也经常位于 “遗忘角落”。</li>
+</ul>
+</li>
+<li>aTrust解决方案：<ul>
+<li>_<strong>端口隐藏</strong>_：基于SPA单包授权技术，默认情况下端口全隐藏，业务全隐身，只有验证用户和设备身份的合法性后，才针对合法用户合规终端开放网络端口和业务访问权限。有效缓解DDoS攻击、流量攻击、端口扫描、远程注入等威胁。</li>
+<li>_<strong>最小权限</strong>_：遵循最小权限原则，基于场景化应用授权而非网络全开放，用户只能访问完成其日常工作所必须的应用资源。访问权限可以基于角色、访问上下文、访问者的信任等级等多维属性制定，并可在风险发生时动态实时撤销。</li>
+<li>_<strong>自身安全</strong>_：内置WAF组件，有效缓解漏洞注入、溢出攻击等威胁；内置RASP模块，抵御基于传统签名方式无法有效保护的未知攻击，同时具备基于自学习的进程白名单和驱动级文件防纂改能力。</li>
+<li>_<strong>持续验证</strong>_：通过自适应多因子认证能力，根据人员、终端、环境等因素动态调整认证策略，兼顾安全与易用，访问过程中，根据风险情况，持续验证用户身份是否可信；另外，不仅仅验证人员身份，还持续对终端设备身份、设备归属、设备健康度进行评估。</li>
+<li>_<strong>架构安全</strong>_：在统一的零信任架构视野下构建远程安全访问能力，避免远程接入场景成为整体安全能力的短板，且可持续扩展到其他业务场景，最终实现全场景零信任架构。</li>
+</ul>
+</li>
+</ul>
+<h3 id="设备部署"><a href="#设备部署" class="headerlink" title="设备部署"></a>设备部署</h3><blockquote>
+<ul>
+<li>硬件部署</li>
+<li>软件部署</li>
+</ul>
+</blockquote>
+<h4 id="硬件部署"><a href="#硬件部署" class="headerlink" title="硬件部署"></a>硬件部署</h4><p>零信任aTrust分为“分离式部署”和“综合网关部署”两种形式</p>
+<p>分离式部署有控制中心、代理网关两台设备</p>
+<ol>
+<li><strong>控制中心设备</strong>：型号以字母“C”结尾，例如：aTrust-1000-B1080C。</li>
+<li><strong>代理网关设备</strong>：型号以字母“G”结尾，例如：aTrust-1000-B1060G。</li>
+<li><strong>综合网管设备</strong>：型号以字母“M”结尾，例如：aTrust-1000-V1050M。</li>
+</ol>
+<p>深信服aTrust设备，控制中心和安全代理网关的默认的出厂IP均为ETH0：10.254.254.254&#x2F;24。</p>
+<p>如果电脑连接的是aTrust设备控制中心或安全代理网关的ETH0口，需要线在电脑上配置一个10.254.254.0&#x2F;24网段的地址，打开浏览器输入<a target="_blank" rel="noopener" href="https://10.254.254.254:4433/">https://10.254.254.254:4433</a> 登录设备网关控制台。控制中心或安全代理网关控制台管理端口是4433</p>
+<h3 id="软件部署"><a href="#软件部署" class="headerlink" title="软件部署"></a>软件部署</h3><p>支持虚拟化部署的平台：</p>
+<ol>
+<li>深信服超融合平台（HCI V5.8.6及以上）</li>
+<li>VMware 5.0及以上，使用KVM虚拟化技术，支持qcow2格式导入的虚拟化环境</li>
+<li>各种常见公有云平台，如阿里云、腾讯云、华为云、亚马逊云等</li>
+</ol>
+<p>参数要求：</p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>控制中心（SDPC）</th>
+<th>安全代理（Proxy）</th>
+<th>综合网关</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CPU</td>
+<td>8核</td>
+<td>4核</td>
+<td>8核</td>
+</tr>
+<tr>
+<td>内存</td>
+<td>16GB</td>
+<td>8GB</td>
+<td>16GB</td>
+</tr>
+<tr>
+<td>磁盘</td>
+<td>200GB</td>
+<td>200GB</td>
+<td>200GB</td>
+</tr>
+<tr>
+<td>网口数</td>
+<td>4个</td>
+<td>4个</td>
+<td>4个</td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://king-xyp.github.io">沐风</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://king-xyp.github.io/2026/03/03/%E9%9B%B6%E4%BF%A1%E4%BB%BB/">http://king-xyp.github.io/2026/03/03/%E9%9B%B6%E4%BF%A1%E4%BB%BB/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://king-xyp.github.io" target="_blank">沐风的blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AE%89%E5%85%A8%E4%BA%A7%E5%93%81/">安全产品</a><a class="post-meta__tags" href="/tags/%E6%B7%B1%E4%BF%A1%E6%9C%8D/">深信服</a><a class="post-meta__tags" href="/tags/aTrust/">aTrust</a><a class="post-meta__tags" href="/tags/%E9%9B%B6%E4%BF%A1%E4%BB%BB/">零信任</a></div><div class="post-share"><div class="social-share" data-image="/img/touxiang.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/09/11/%E6%BC%8F%E6%B4%9E%E6%B1%87%E6%80%BB/" title="漏洞汇总"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">漏洞汇总</div></div><div class="info-2"><div class="info-item-1">描述TOP10相关漏洞原理等</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/touxiang.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">沐风</div><div class="author-info-description">知识是一切的基础</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/king-xyp"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#aTrust%E9%9B%B6%E4%BF%A1%E4%BB%BB"><span class="toc-number">1.</span> <span class="toc-text">aTrust零信任</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%B6%E4%BF%A1%E4%BB%BB%E5%AF%B9%E5%A8%81%E8%83%81%E7%9A%84%E5%BA%94%E5%AF%B9%E6%96%B9%E6%B3%95"><span class="toc-number">1.0.1.</span> <span class="toc-text">零信任对威胁的应对方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%92%88%E5%AF%B9%E5%A4%96%E9%83%A8%E5%A8%81%E8%83%81"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">针对外部威胁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%92%88%E5%AF%B9%E5%86%85%E9%83%A8%E5%A8%81%E8%83%81"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">针对内部威胁</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%B6%E4%BF%A1%E4%BB%BB%E5%9B%9B%E5%A4%A7%E5%9C%BA%E6%99%AF"><span class="toc-number">1.0.2.</span> <span class="toc-text">零信任四大场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#aTrust%E4%B8%8ESSL-VPN%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.3.</span> <span class="toc-text">aTrust与SSL VPN的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E9%83%A8%E7%BD%B2"><span class="toc-number">1.0.4.</span> <span class="toc-text">设备部署</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E9%83%A8%E7%BD%B2"><span class="toc-number">1.0.4.1.</span> <span class="toc-text">硬件部署</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E9%83%A8%E7%BD%B2"><span class="toc-number">1.0.5.</span> <span class="toc-text">软件部署</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/03/%E9%9B%B6%E4%BF%A1%E4%BB%BB/" title="aTrust零信任">aTrust零信任</a><time datetime="2026-03-03T06:34:29.000Z" title="发表于 2026-03-03 14:34:29">2026-03-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/11/%E6%BC%8F%E6%B4%9E%E6%B1%87%E6%80%BB/" title="漏洞汇总">漏洞汇总</a><time datetime="2025-09-11T08:04:49.000Z" title="发表于 2025-09-11 16:04:49">2025-09-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/11/SQL%E6%B3%A8%E5%85%A5%E7%BB%95waf/" title="SQL注入绕waf">SQL注入绕waf</a><time datetime="2025-09-11T01:44:45.000Z" title="发表于 2025-09-11 09:44:45">2025-09-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/08/SQL%E6%B3%A8%E5%85%A5/" title="SQL注入">SQL注入</a><time datetime="2025-09-08T01:23:09.000Z" title="发表于 2025-09-08 09:23:09">2025-09-08</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 沐风</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.0</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const initValine = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyValine = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const valineConfig = {
+      el: '#vcomment',
+      appId: 'iPU4vfkFLB3OW9ntYe6GyKzn-gzGzoHsz',
+      appKey: 'hVKfOjbimykva25sbr6SeSXu',
+      avatar: 'monsterid',
+      serverURLs: 'https://ipu4vfkf.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      visitor: true,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || window.location.pathname
+    }
+
+    new Valine(valineConfig)
+  }
+
+  const loadValine = async (el, path) => {
+    if (typeof Valine === 'function') {
+      initValine(el, path)
+    } else {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js')
+      initValine(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Valine' === 'Valine'
+      ? window.shuoshuoComment = { loadComment: loadValine }
+      : window.loadOtherComment = loadValine
+    return
+  }
+
+  if ('Valine' === 'Valine' || !true) {
+    if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="输入关键词…" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
