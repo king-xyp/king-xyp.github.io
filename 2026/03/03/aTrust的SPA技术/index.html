@@ -1,0 +1,323 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>aTrust的SPA技术 | 沐风的blog</title><meta name="author" content="沐风"><meta name="copyright" content="沐风"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="深信服零信任用户认证概述">
+<meta property="og:type" content="article">
+<meta property="og:title" content="aTrust的SPA技术">
+<meta property="og:url" content="http://king-xyp.github.io/2026/03/03/aTrust%E7%9A%84SPA%E6%8A%80%E6%9C%AF/index.html">
+<meta property="og:site_name" content="沐风的blog">
+<meta property="og:description" content="深信服零信任用户认证概述">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://king-xyp.github.io/img/touxiang.png">
+<meta property="article:published_time" content="2026-03-03T07:37:42.000Z">
+<meta property="article:modified_time" content="2026-03-03T07:38:58.407Z">
+<meta property="article:author" content="沐风">
+<meta property="article:tag" content="安全产品">
+<meta property="article:tag" content="深信服">
+<meta property="article:tag" content="aTrust">
+<meta property="article:tag" content="零信任">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://king-xyp.github.io/img/touxiang.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "aTrust的SPA技术",
+  "url": "http://king-xyp.github.io/2026/03/03/aTrust%E7%9A%84SPA%E6%8A%80%E6%9C%AF/",
+  "image": "http://king-xyp.github.io/img/touxiang.png",
+  "datePublished": "2026-03-03T07:37:42.000Z",
+  "dateModified": "2026-03-03T07:38:58.407Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "沐风",
+      "url": "http://king-xyp.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://king-xyp.github.io/2026/03/03/aTrust%E7%9A%84SPA%E6%8A%80%E6%9C%AF/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":"ture","top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'aTrust的SPA技术',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/img/background.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/touxiang.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/artitalk"><i class="fa-fw fas fa-lightbulb"></i><span> 说说</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><!-- 左侧博客信息区域--><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">沐风的blog</span></a><a class="nav-page-title" href="/"><span class="site-name">aTrust的SPA技术</span></a></span><!-- 新增的导航菜单容器（居中布局关键）--><div id="nav-menus-container"><!-- 菜单主体部分--><div id="menus"><!-- 菜单项--><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/artitalk"><i class="fa-fw fas fa-lightbulb"></i><span> 说说</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><!-- 右侧功能区域（新增容器）--><div id="nav-right-container"><!-- 搜索按钮（移动到右侧）--><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><!-- 移动端汉堡菜单按钮--><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">aTrust的SPA技术</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-03T07:37:42.000Z" title="发表于 2026-03-03 15:37:42">2026-03-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-03T07:38:58.407Z" title="更新于 2026-03-03 15:38:58">2026-03-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%89%E5%85%A8%E4%BA%A7%E5%93%81/">安全产品</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9B%B6%E4%BF%A1%E4%BB%BB/">零信任</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="SPA（单包授权）技术"><a href="#SPA（单包授权）技术" class="headerlink" title="SPA（单包授权）技术"></a>SPA（单包授权）技术</h1><h3 id="功能概述"><a href="#功能概述" class="headerlink" title="功能概述"></a>功能概述</h3><p>SPA（Single Packet Authorization）即单包授权，是SDP（软件定义边界）的核心功能。通过对连接服务器的所有数据包进行认证授权，服务器认证通过之后，才会响应连接请求。以此实现企业业务的网络隐身，从网络上无法连接、无法扫描。</p>
+<p>SPA提供的安全作用：</p>
+<ul>
+<li>保护服务器：在提供真正的SPA之前，服务器不会响应来自任何客户端的任何连接，且端口也不会被探测到（无法扫描到aTrust对外暴露的端口），真正的做到了端口隐藏。</li>
+<li>缓解拒绝服务攻击：面向互联网运行HTTPS协议的服务器极易受到拒绝服务（DoS）攻击。SPA可以缓解这些攻击，因为它允许服务器在进入TLS之前放弃TLS DoS尝试</li>
+</ul>
+<p>SPA的需求范围包括：</p>
+<ul>
+<li>互联网环境接入时，防止非法人员接入</li>
+<li>企业有大量分公司员工在内网环境接入，希望可以增强内网接入安全</li>
+</ul>
+<p>零信任aTrust支持基于第二代TCP的SPA技术，也支持第三代基于TCP+UDP的SPA技术。</p>
+<ul>
+<li>第二代SPA技术，能防7层DOS攻击，但无法防止4层DOS攻击。</li>
+<li>第三代SPA技术，能有效的防护4层DOS攻击，隐藏设备对外暴露的端口，保证端口不被扫描到。使用第三代SPA技术时，需将控制中心和代理网关对外暴露的端口以TCP和UDP协议映射至公网，如下举例。</li>
+<li>第四代SPA技术，考虑到了安全码的安全性。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>设备</th>
+<th>内网端口</th>
+<th>映射协议</th>
+<th>外网端口</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>控制中心</td>
+<td>443</td>
+<td>TCP</td>
+<td>443</td>
+<td>用户接入认证端口，默认443，端口可改，一对一映射</td>
+</tr>
+<tr>
+<td></td>
+<td>443</td>
+<td>UDP</td>
+<td>443</td>
+<td>UDP敲门端口，一对一映射</td>
+</tr>
+<tr>
+<td></td>
+<td>443</td>
+<td>TCP</td>
+<td>443</td>
+<td>WEB应用访问端口，默认443，端口可改，一对一映射</td>
+</tr>
+<tr>
+<td>代理网关</td>
+<td>443</td>
+<td>UDP</td>
+<td>443</td>
+<td>UDP敲门端口，一对一映射</td>
+</tr>
+<tr>
+<td></td>
+<td>441</td>
+<td>TCP</td>
+<td>441</td>
+<td>隧道应用访问端口，一对一映射</td>
+</tr>
+<tr>
+<td></td>
+<td>441</td>
+<td>UDP</td>
+<td>441</td>
+<td>UDP敲门端口，一对一映射</td>
+</tr>
+</tbody></table>
+<h3 id="配置相关"><a href="#配置相关" class="headerlink" title="配置相关"></a>配置相关</h3><p><strong>管理员登录控制中心控制台</strong>：</p>
+<ul>
+<li>进入系统管理，配置客户端接入设置，配置用户认证接入地址。</li>
+</ul>
+<p><strong>创建短信网关</strong>：</p>
+<ul>
+<li>进入系统管理，系统配置，短信网关，点击新增创建短信网关。</li>
+</ul>
+<p><strong>配置SPA安全码模式</strong>：</p>
+<ul>
+<li>进入安全中心，服务隐身，安全码管理，配置SPA安全码模式，关联短信网关，并分发给用户。</li>
+</ul>
+<p><strong>开启SPA服务隐身功能</strong>：</p>
+<ul>
+<li>进入安全中心，服务隐身，安全码管理，开启SPA服务隐身功能，并配置控制中心接入地址、代理网关接入地址和源IP地址白名单。</li>
+</ul>
+<p><strong>填写UDP敲门地址</strong>：</p>
+<ul>
+<li>进入系统管理，代理网关管理，在所在区域点击编辑，填写UDP敲门地址。</li>
+</ul>
+<p>注：源IP地址白名单一定要放通管理地址和直连网段。</p>
+<h3 id="SPA认证原理"><a href="#SPA认证原理" class="headerlink" title="SPA认证原理"></a>SPA认证原理</h3><p><img src="./1761880050901.png"></p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>启用UDP敲门，需同时将要隐藏的服务器端口在公网上做TCP和UDP协议的端口映射，否则将无法访问；</li>
+<li>集群从设备真实IP不支持SPA；</li>
+<li>前置负载均衡场景不支持UDP SPA，支持TCP敲门；</li>
+<li>服务端收到第一次成功敲门包和异常包暂不支持上传到审计中心（可以查看后台spad.log日志）；</li>
+<li>不支持对控制台端口4433，SSH端口22和集群端口进行端口隐藏；</li>
+<li>集群场景下端口隐藏，请将主从节点ip填入保护地址中；</li>
+<li>启用UDP敲门后，需确保终端时间和服务器时间相差小于5分钟才能访问。</li>
+<li>服务器UDP敲门功能关闭，安全专属客户端仍然会发送UDP敲门包；</li>
+<li>银河麒麟系统上通过安装器安装时获取不到SPA安全码，需通过添加白名单的方式下发SPA种子；</li>
+<li>关闭UDP敲门后sdp-spad服务会自动关闭，开启UDP敲门后sdp-spad会自动开启；</li>
+<li>开启SPA后，安装SPA客户端连接控制中心失败时，请注意终端时间和服务器时间相差是否大于8个小时，清除浏览器缓存并重新打开portal或应用中心界面；</li>
+<li>修改自动敲门周期后，需要用户重新登录才能生效；</li>
+<li>开启UDP敲门，安装SPA客户端后，首次连接控制中心和登录可能会等待较长时间（10s左右）。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://king-xyp.github.io">沐风</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://king-xyp.github.io/2026/03/03/aTrust%E7%9A%84SPA%E6%8A%80%E6%9C%AF/">http://king-xyp.github.io/2026/03/03/aTrust%E7%9A%84SPA%E6%8A%80%E6%9C%AF/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://king-xyp.github.io" target="_blank">沐风的blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AE%89%E5%85%A8%E4%BA%A7%E5%93%81/">安全产品</a><a class="post-meta__tags" href="/tags/%E6%B7%B1%E4%BF%A1%E6%9C%8D/">深信服</a><a class="post-meta__tags" href="/tags/aTrust/">aTrust</a><a class="post-meta__tags" href="/tags/%E9%9B%B6%E4%BF%A1%E4%BB%BB/">零信任</a></div><div class="post-share"><div class="social-share" data-image="/img/touxiang.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/03/03/aTrust%E5%AE%89%E5%85%A8%E9%9A%94%E7%A6%BB/" title="aTrust安全隔离"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">aTrust安全隔离</div></div><div class="info-2"><div class="info-item-1">深信服零信任安全隔离场景概述</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/03/03/%E9%9B%B6%E4%BF%A1%E4%BB%BB/" title="aTrust零信任"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-03</div><div class="info-item-2">aTrust零信任</div></div><div class="info-2"><div class="info-item-1">深信服零信任产品概述</div></div></div></a><a class="pagination-related" href="/2026/03/03/aTrust%E4%B8%9A%E5%8A%A1%E5%8F%91%E5%B8%83%E5%9C%BA%E6%99%AF/" title="aTrust业务发布场景"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-03</div><div class="info-item-2">aTrust业务发布场景</div></div><div class="info-2"><div class="info-item-1">深信服零信任业务发布场景概述</div></div></div></a><a class="pagination-related" href="/2026/03/03/aTrust%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/" title="aTrust用户认证"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-03</div><div class="info-item-2">aTrust用户认证</div></div><div class="info-2"><div class="info-item-1">深信服零信任用户认证概述</div></div></div></a><a class="pagination-related" href="/2026/03/03/aTrust%E5%AE%89%E5%85%A8%E9%9A%94%E7%A6%BB/" title="aTrust安全隔离"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-03</div><div class="info-item-2">aTrust安全隔离</div></div><div class="info-2"><div class="info-item-1">深信服零信任安全隔离场景概述</div></div></div></a><a class="pagination-related" href="/2026/03/03/aTrust%E8%B5%84%E6%BA%90%E5%8F%91%E5%B8%83%E6%A6%82%E8%BF%B0/" title="aTrust资源发布概述"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-03</div><div class="info-item-2">aTrust资源发布概述</div></div><div class="info-2"><div class="info-item-1">深信服零信任资源发布概述</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/touxiang.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">沐风</div><div class="author-info-description">知识是一切的基础</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/king-xyp"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SPA%EF%BC%88%E5%8D%95%E5%8C%85%E6%8E%88%E6%9D%83%EF%BC%89%E6%8A%80%E6%9C%AF"><span class="toc-number">1.</span> <span class="toc-text">SPA（单包授权）技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0"><span class="toc-number">1.0.1.</span> <span class="toc-text">功能概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3"><span class="toc-number">1.0.2.</span> <span class="toc-text">配置相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SPA%E8%AE%A4%E8%AF%81%E5%8E%9F%E7%90%86"><span class="toc-number">1.0.3.</span> <span class="toc-text">SPA认证原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.0.4.</span> <span class="toc-text">注意事项</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/03/aTrust%E7%9A%84SPA%E6%8A%80%E6%9C%AF/" title="aTrust的SPA技术">aTrust的SPA技术</a><time datetime="2026-03-03T07:37:42.000Z" title="发表于 2026-03-03 15:37:42">2026-03-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/03/aTrust%E5%AE%89%E5%85%A8%E9%9A%94%E7%A6%BB/" title="aTrust安全隔离">aTrust安全隔离</a><time datetime="2026-03-03T07:32:55.000Z" title="发表于 2026-03-03 15:32:55">2026-03-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/03/aTrust%E8%B5%84%E6%BA%90%E5%8F%91%E5%B8%83%E6%A6%82%E8%BF%B0/" title="aTrust资源发布概述">aTrust资源发布概述</a><time datetime="2026-03-03T07:32:31.000Z" title="发表于 2026-03-03 15:32:31">2026-03-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/03/aTrust%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/" title="aTrust用户认证">aTrust用户认证</a><time datetime="2026-03-03T07:08:14.000Z" title="发表于 2026-03-03 15:08:14">2026-03-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/03/aTrust%E4%B8%9A%E5%8A%A1%E5%8F%91%E5%B8%83%E5%9C%BA%E6%99%AF/" title="aTrust业务发布场景">aTrust业务发布场景</a><time datetime="2026-03-03T07:03:12.000Z" title="发表于 2026-03-03 15:03:12">2026-03-03</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 沐风</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.0</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const initValine = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyValine = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const valineConfig = {
+      el: '#vcomment',
+      appId: 'iPU4vfkFLB3OW9ntYe6GyKzn-gzGzoHsz',
+      appKey: 'hVKfOjbimykva25sbr6SeSXu',
+      avatar: 'monsterid',
+      serverURLs: 'https://ipu4vfkf.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      visitor: true,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || window.location.pathname
+    }
+
+    new Valine(valineConfig)
+  }
+
+  const loadValine = async (el, path) => {
+    if (typeof Valine === 'function') {
+      initValine(el, path)
+    } else {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js')
+      initValine(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Valine' === 'Valine'
+      ? window.shuoshuoComment = { loadComment: loadValine }
+      : window.loadOtherComment = loadValine
+    return
+  }
+
+  if ('Valine' === 'Valine' || !true) {
+    if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="输入关键词…" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

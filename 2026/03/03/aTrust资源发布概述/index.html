@@ -1,0 +1,344 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>aTrust资源发布概述 | 沐风的blog</title><meta name="author" content="沐风"><meta name="copyright" content="沐风"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="深信服零信任资源发布概述">
+<meta property="og:type" content="article">
+<meta property="og:title" content="aTrust资源发布概述">
+<meta property="og:url" content="http://king-xyp.github.io/2026/03/03/aTrust%E8%B5%84%E6%BA%90%E5%8F%91%E5%B8%83%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:site_name" content="沐风的blog">
+<meta property="og:description" content="深信服零信任资源发布概述">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://king-xyp.github.io/img/touxiang.png">
+<meta property="article:published_time" content="2026-03-03T07:32:31.000Z">
+<meta property="article:modified_time" content="2026-03-03T07:35:49.568Z">
+<meta property="article:author" content="沐风">
+<meta property="article:tag" content="安全产品">
+<meta property="article:tag" content="深信服">
+<meta property="article:tag" content="aTrust">
+<meta property="article:tag" content="零信任">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://king-xyp.github.io/img/touxiang.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "aTrust资源发布概述",
+  "url": "http://king-xyp.github.io/2026/03/03/aTrust%E8%B5%84%E6%BA%90%E5%8F%91%E5%B8%83%E6%A6%82%E8%BF%B0/",
+  "image": "http://king-xyp.github.io/img/touxiang.png",
+  "datePublished": "2026-03-03T07:32:31.000Z",
+  "dateModified": "2026-03-03T07:35:49.568Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "沐风",
+      "url": "http://king-xyp.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://king-xyp.github.io/2026/03/03/aTrust%E8%B5%84%E6%BA%90%E5%8F%91%E5%B8%83%E6%A6%82%E8%BF%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":"ture","top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'aTrust资源发布概述',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/img/background.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/touxiang.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/artitalk"><i class="fa-fw fas fa-lightbulb"></i><span> 说说</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><!-- 左侧博客信息区域--><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">沐风的blog</span></a><a class="nav-page-title" href="/"><span class="site-name">aTrust资源发布概述</span></a></span><!-- 新增的导航菜单容器（居中布局关键）--><div id="nav-menus-container"><!-- 菜单主体部分--><div id="menus"><!-- 菜单项--><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/artitalk"><i class="fa-fw fas fa-lightbulb"></i><span> 说说</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><!-- 右侧功能区域（新增容器）--><div id="nav-right-container"><!-- 搜索按钮（移动到右侧）--><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><!-- 移动端汉堡菜单按钮--><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">aTrust资源发布概述</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-03T07:32:31.000Z" title="发表于 2026-03-03 15:32:31">2026-03-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-03T07:35:49.568Z" title="更新于 2026-03-03 15:35:49">2026-03-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%89%E5%85%A8%E4%BA%A7%E5%93%81/">安全产品</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9B%B6%E4%BF%A1%E4%BB%BB/">零信任</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="aTrust资源发布"><a href="#aTrust资源发布" class="headerlink" title="aTrust资源发布"></a>aTrust资源发布</h1><h3 id="资源发布概述"><a href="#资源发布概述" class="headerlink" title="资源发布概述"></a>资源发布概述</h3><p>零信任保护的是访问主体（终端）到访问客体（业务服务器）过程中的安全。资源是零信任定义的可被访问的业务服务器，只有在零信任上发布并授权给用户的业务服务器地址，终端才能通过零信任访问成功。</p>
+<p><img src="./1761875253843.png"></p>
+<table>
+<thead>
+<tr>
+<th>aTrust资源类型</th>
+<th>支持的协议</th>
+<th>适用业务类型</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>隧道资源(推荐)</td>
+<td>TCP, UDP, ICMP</td>
+<td>B&#x2F;S架构、C&#x2F;S架构业务</td>
+<td>依赖于零信任客户端，适用于大部分业务场景，如：WEB业务访问、远程运维、远程桌面、samba共享、FTP等；</td>
+</tr>
+<tr>
+<td>WEB资源</td>
+<td>http&#x2F;https</td>
+<td>B&#x2F;S架构业务</td>
+<td>不依赖客户端，可无端访问，仅适用于WEB类的业务；但兼容性差于隧道资源；</td>
+</tr>
+<tr>
+<td>WEB泛域名资源</td>
+<td>http&#x2F;https</td>
+<td>B&#x2F;S架构业务</td>
+<td>WEB资源的一种，适用于有大量WEB资源需要发布，但无法收集具体WEB站点的场景；主要应用于高校场景发布知网、万方等图书馆资源；</td>
+</tr>
+<tr>
+<td>桌面云资源</td>
+<td>&#x2F;</td>
+<td>深信服桌面云</td>
+<td>特殊场景，隧道资源的一种，主要用于aTrust对接深信服桌面云实现零信任与桌面云业务单点登录，用户无感知；</td>
+</tr>
+</tbody></table>
+<p>注：非特殊场景下，推荐使用隧道资源，兼容性最好，Web资源部署实施域名改造工作量大，对于不规范站点兼容性差</p>
+<h4 id="隧道资源"><a href="#隧道资源" class="headerlink" title="隧道资源"></a>隧道资源</h4><ul>
+<li>4层代理技术，支持TCP、UDP、ICMP协议。既可以支持web站点，也可以支持3389（RDP）、samba共享等非web业务系统，相当于传统SSLVPN的L3vpn资源。</li>
+<li>实现原理其实就类似于套了一个壳（加密隧道），把流量中转了代理网关访问资源，从而实现互联网的PC终端，能够访问到内网IP段的内网业务系统资源。</li>
+</ul>
+<p>隧道资源——方案特征</p>
+<ul>
+<li>兼容性好，可以支持BS、CS应用（如rdp、ssh、samba共享等），支持TCP、UDP、ICMP协议；</li>
+<li>不需要改造CS应用或BS网站，比如cs app中写死了一个内网IP地址（如192.168.1.1），那么通过隧道资源方式，cs app仍然可以通过192.168.1.1这个内网IP，经过隧道代理，安全访问到原来的业务系统；</li>
+</ul>
+<p>访问隧道应用的流量原理</p>
+<p><img src="./1761875762892.png"></p>
+<p>1.客户端访问服务器的数据经过本地虚拟网卡（加密隧道）抵达代理网关</p>
+<p>2.Prxoy向sdpc查询该用户是否有访问服务器的权限</p>
+<p>3.Sdpc告知Prxoy该用户可以访问该资源</p>
+<p>4.代理网关代理用户访问服务器</p>
+<p>5.服务器响应请求并返回数据给代理网关</p>
+<p>6.代理网关经加密隧道返回服务器数据到客户端</p>
+<h4 id="WEB资源"><a href="#WEB资源" class="headerlink" title="WEB资源"></a>WEB资源</h4><ul>
+<li>只支持http&#x2F;https的站点，实际上是nginx的https反向代理，可以理解为web网站直接发布，也可以理解为负载均衡的7层代理。</li>
+</ul>
+<p>WEB资源——方案特征</p>
+<ul>
+<li>由于需要互联网访问，需要传输加密，避免明文传输被泄漏。所以需要发布成https的加密站点；</li>
+<li>同时为了让浏览器信任，避免报“该站点证书不可信”，所以需要让客户采购SSL证书（要花钱，要有域名）带来了部署上的不便利。</li>
+<li>由于是7层代理，可以识别审计出URL和网页的内容，可以做更多的应用层的控制，如水印、禁止复制&#x2F;下等；</li>
+</ul>
+<p>访问Web应用的流量原理</p>
+<p><img src="./1761875801995.png"></p>
+<p>用户WEB应用访问流量：</p>
+<ol>
+<li>用户安装客户端已完成认证，用户输入WEB应用域名访问地址；</li>
+<li>WEB应用经过DNS服务器进行解析，并将解析结果返回，域名的A记录解析地址指向代理网关地址；</li>
+<li>用户向代理网关发起WEB应用的请求；</li>
+<li>代理网关向控制中心查询该用户是否具备该资源的访问权限；</li>
+<li>控制中心返回鉴权结果；</li>
+<li>代理网关收到鉴权结果后，向WEB服务器发起请求；</li>
+<li>服务器收到请求后，将数据返回给代理网关；</li>
+<li>代理网关将业务数据返回给用户。</li>
+</ol>
+<h3 id="Web应用相关配置"><a href="#Web应用相关配置" class="headerlink" title="Web应用相关配置"></a>Web应用相关配置</h3><p>开篇劝退：WEB资源的兼容性比隧道资源差，如无特殊情况，请优先将资源以隧道资源的方式发布。</p>
+<p>配置规则如下：</p>
+<ol>
+<li>业务服务器地址可以为IP或域名</li>
+<li>应用的访问地址必须为域名，不能为IP</li>
+<li>授信证书默认选中顺序：相同单域名证书&gt;包含该域名的多域名证书&gt;泛域名证书&gt;包含该域名后缀的泛域名证书的混合域名证书&gt;内置证书</li>
+</ol>
+<p>aTrust设备能够基于http和https标准协议，实现免客户端和插件安装，即可访问所有Web资源应用。aTrust采用Web反向代理技术，更好的解决了Web反向代理的URL重写兼容性问题，同时也提供了更好的访问体验，起到收缩互联网暴露面，减少应用系统被攻击的风险，同时又不会改用户访问习惯的效果。</p>
+<p>WEB应用支持的功能，具体如下：</p>
+<ol>
+<li>基础WEB应用发布<ul>
+<li>选择代理模式，支持透明代理和智能改写两种代理方式</li>
+<li>透明模式：不对网站进行内容改写，适用于较为规范化的业务系统发布。推荐配置方式为前后端访问地址保持一致。</li>
+<li>智能改写：适用于透明代理不能正常兼容的复杂站点或老旧站点</li>
+</ul>
+</li>
+<li>依赖站点–（自动采集工具）：用于解决部分复杂的网页除了入口站点外，在html页面中还镶嵌着许多的依赖子站点场景。<ul>
+<li>注：功能使用前提条件<br>a. WEB应用的代理模式必须选择智能改写；<br>b. 必须提供泛域名和泛域名证书（若是使用http协议，可不用提供证书）</li>
+</ul>
+</li>
+<li>私有DNS解析：用于解决在灰度测试阶段不改变用户访问习惯，或客户想使用WEB应用但没有申请域名的景<ul>
+<li>必须安装aTrust客户端才可访问</li>
+</ul>
+</li>
+<li>安全设置（web水印，访问控制策略）</li>
+<li>单点登录：可实现用户登录aTrust后，直接访问业务系统，无需重复输入账号密码即可进行访问。</li>
+</ol>
+<p>注：</p>
+<p>配置后端访问地址，可为域名或者IP，若为域名则代理网关Proxy必须要能解析（可通过配置hosts解决）</p>
+<p>配置前端访问地址，必须为域名，该地址的解析需要解析到代理网关Proxy的地址（无公网DNS可配置私有DNS）</p>
+<h3 id="隧道应用配置相关"><a href="#隧道应用配置相关" class="headerlink" title="隧道应用配置相关"></a>隧道应用配置相关</h3><p>隧道应用，是基于终端C&#x2F;S架构应用接入安全制定的一种访问内网资源的方式。零信任aTrust的隧道模式，存在两种协议支持，分别是TCP&#x2F;UDP协议和HTTP&#x2F;HTTPS协议。同时不仅支持C&#x2F;S架构应用的发布，同时也是支持B&#x2F;S架构应用的发布，具体如下。</p>
+<p>隧道模式TCP&#x2F;UDP协议：</p>
+<ul>
+<li>支持通过TCP、UDP发布B&#x2F;S和C&#x2F;S资源，实现用户登录aTrust后访问；</li>
+<li>支持通过ICMP发布资源，实现用户登录aTrust后，探测资源的连通性；</li>
+<li>支持TCP协议优先使用隧道长连，支持在Windows&#x2F;Mac系统下生效，实现单点通讯&#x2F;ALG反连场景</li>
+</ul>
+<p>隧道模式HTTPS&#x2F;HTTP协议：</p>
+<ul>
+<li>支持通过HTTPS&#x2F;HTTP协议发布B&#x2F;S资源，实现用户登录aTrust后访问；</li>
+<li>支持用户访问应用时，日志审计至URL粒度；</li>
+<li>支持访问应用时，显示用户名等信息的WEB水印；</li>
+<li>支持HTTP&#x2F;HTTPS隧道协议的单点登录功能，实现支持登录aTrust后，可单点登录应用；</li>
+<li>配置应用地址时，支持单个IP、IP范围、IP段及域名，域名支持通配符。</li>
+</ul>
+<p>注意：</p>
+<ul>
+<li>TCP协议支持单个IP、IP范围、IP段及域名，域名支持通配符；UDP&#x2F;ICMP&#x2F;ALL协议仅支持单个IP、IP范围、IP段，不支持域名</li>
+<li>选择TCP长链接，配置应用防护策略后，访问不符合策略时会直接阻断，不支持提示语显示和豁免补救</li>
+<li>HTTP&#x2F;HTTPS协议不支持发布C&#x2F;S应用；</li>
+<li>若用户发布的为HTTP协议，授信证书选择内置证书即可，不影响业务的访问。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://king-xyp.github.io">沐风</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://king-xyp.github.io/2026/03/03/aTrust%E8%B5%84%E6%BA%90%E5%8F%91%E5%B8%83%E6%A6%82%E8%BF%B0/">http://king-xyp.github.io/2026/03/03/aTrust%E8%B5%84%E6%BA%90%E5%8F%91%E5%B8%83%E6%A6%82%E8%BF%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://king-xyp.github.io" target="_blank">沐风的blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AE%89%E5%85%A8%E4%BA%A7%E5%93%81/">安全产品</a><a class="post-meta__tags" href="/tags/%E6%B7%B1%E4%BF%A1%E6%9C%8D/">深信服</a><a class="post-meta__tags" href="/tags/aTrust/">aTrust</a><a class="post-meta__tags" href="/tags/%E9%9B%B6%E4%BF%A1%E4%BB%BB/">零信任</a></div><div class="post-share"><div class="social-share" data-image="/img/touxiang.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/03/03/aTrust%E5%AE%89%E5%85%A8%E9%9A%94%E7%A6%BB/" title="aTrust安全隔离"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">aTrust安全隔离</div></div><div class="info-2"><div class="info-item-1">深信服零信任安全隔离场景概述</div></div></div></a><a class="pagination-related" href="/2026/03/03/aTrust%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/" title="aTrust用户认证"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">aTrust用户认证</div></div><div class="info-2"><div class="info-item-1">深信服零信任用户认证概述</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/03/03/%E9%9B%B6%E4%BF%A1%E4%BB%BB/" title="aTrust零信任"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-03</div><div class="info-item-2">aTrust零信任</div></div><div class="info-2"><div class="info-item-1">深信服零信任产品概述</div></div></div></a><a class="pagination-related" href="/2026/03/03/aTrust%E4%B8%9A%E5%8A%A1%E5%8F%91%E5%B8%83%E5%9C%BA%E6%99%AF/" title="aTrust业务发布场景"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-03</div><div class="info-item-2">aTrust业务发布场景</div></div><div class="info-2"><div class="info-item-1">深信服零信任业务发布场景概述</div></div></div></a><a class="pagination-related" href="/2026/03/03/aTrust%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/" title="aTrust用户认证"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-03</div><div class="info-item-2">aTrust用户认证</div></div><div class="info-2"><div class="info-item-1">深信服零信任用户认证概述</div></div></div></a><a class="pagination-related" href="/2026/03/03/aTrust%E5%AE%89%E5%85%A8%E9%9A%94%E7%A6%BB/" title="aTrust安全隔离"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-03</div><div class="info-item-2">aTrust安全隔离</div></div><div class="info-2"><div class="info-item-1">深信服零信任安全隔离场景概述</div></div></div></a><a class="pagination-related" href="/2026/03/03/aTrust%E7%9A%84SPA%E6%8A%80%E6%9C%AF/" title="aTrust的SPA技术"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-03</div><div class="info-item-2">aTrust的SPA技术</div></div><div class="info-2"><div class="info-item-1">深信服零信任用户认证概述</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/touxiang.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">沐风</div><div class="author-info-description">知识是一切的基础</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/king-xyp"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#aTrust%E8%B5%84%E6%BA%90%E5%8F%91%E5%B8%83"><span class="toc-number">1.</span> <span class="toc-text">aTrust资源发布</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E5%8F%91%E5%B8%83%E6%A6%82%E8%BF%B0"><span class="toc-number">1.0.1.</span> <span class="toc-text">资源发布概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9A%A7%E9%81%93%E8%B5%84%E6%BA%90"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">隧道资源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#WEB%E8%B5%84%E6%BA%90"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">WEB资源</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web%E5%BA%94%E7%94%A8%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE"><span class="toc-number">1.0.2.</span> <span class="toc-text">Web应用相关配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%A7%E9%81%93%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3"><span class="toc-number">1.0.3.</span> <span class="toc-text">隧道应用配置相关</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/03/aTrust%E7%9A%84SPA%E6%8A%80%E6%9C%AF/" title="aTrust的SPA技术">aTrust的SPA技术</a><time datetime="2026-03-03T07:37:42.000Z" title="发表于 2026-03-03 15:37:42">2026-03-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/03/aTrust%E5%AE%89%E5%85%A8%E9%9A%94%E7%A6%BB/" title="aTrust安全隔离">aTrust安全隔离</a><time datetime="2026-03-03T07:32:55.000Z" title="发表于 2026-03-03 15:32:55">2026-03-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/03/aTrust%E8%B5%84%E6%BA%90%E5%8F%91%E5%B8%83%E6%A6%82%E8%BF%B0/" title="aTrust资源发布概述">aTrust资源发布概述</a><time datetime="2026-03-03T07:32:31.000Z" title="发表于 2026-03-03 15:32:31">2026-03-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/03/aTrust%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/" title="aTrust用户认证">aTrust用户认证</a><time datetime="2026-03-03T07:08:14.000Z" title="发表于 2026-03-03 15:08:14">2026-03-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/03/aTrust%E4%B8%9A%E5%8A%A1%E5%8F%91%E5%B8%83%E5%9C%BA%E6%99%AF/" title="aTrust业务发布场景">aTrust业务发布场景</a><time datetime="2026-03-03T07:03:12.000Z" title="发表于 2026-03-03 15:03:12">2026-03-03</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 沐风</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.0</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const initValine = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyValine = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const valineConfig = {
+      el: '#vcomment',
+      appId: 'iPU4vfkFLB3OW9ntYe6GyKzn-gzGzoHsz',
+      appKey: 'hVKfOjbimykva25sbr6SeSXu',
+      avatar: 'monsterid',
+      serverURLs: 'https://ipu4vfkf.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      visitor: true,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || window.location.pathname
+    }
+
+    new Valine(valineConfig)
+  }
+
+  const loadValine = async (el, path) => {
+    if (typeof Valine === 'function') {
+      initValine(el, path)
+    } else {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js')
+      initValine(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Valine' === 'Valine'
+      ? window.shuoshuoComment = { loadComment: loadValine }
+      : window.loadOtherComment = loadValine
+    return
+  }
+
+  if ('Valine' === 'Valine' || !true) {
+    if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="输入关键词…" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
