@@ -281,6 +281,37 @@
     </entry>
     
     
+    
+    <entry>
+      <title>SQL注入</title>
+      <link href="/2025/09/08/SQL%E6%B3%A8%E5%85%A5-AI%E7%94%9F%E6%88%90%E9%9F%B3%E9%A2%91/"/>
+      <url>/2025/09/08/SQL%E6%B3%A8%E5%85%A5-AI%E7%94%9F%E6%88%90%E9%9F%B3%E9%A2%91/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="AI生成SQL注入文章对话"><a href="#AI生成SQL注入文章对话" class="headerlink" title="AI生成SQL注入文章对话"></a>AI生成SQL注入文章对话</h1><audio controls>  <source src="./SQL注入/SQL注入如何掏空数据库.m4a" type="audio/mpeg"></audio>]]></content>
+      
+      
+      <categories>
+          
+          <category> web渗透 </category>
+          
+          <category> AI生成 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 渗透测试 </tag>
+            
+            <tag> SQL注入 </tag>
+            
+            <tag> AI音频 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
   
   
 </search>
